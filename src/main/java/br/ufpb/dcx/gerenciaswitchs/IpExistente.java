@@ -11,3 +11,9 @@ class IpNaoExistente extends Exception {
         super("O IP " + ip + " não existe.");
     }
 }
+
+class MarcaNaoExistente extends Exception {
+    public MarcaNaoExistente(String marca) {
+        super("A marca " + marca + " não existe.");
+    }
+}

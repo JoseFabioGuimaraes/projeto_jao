@@ -114,12 +114,16 @@ public class SwitchList {
             throw new IpNaoExistente(ip);
         }
     }
-    public void alterarCodigosBasPorMarca(String nome, CodigosBas codigosBas){// vai precisar de Exeption
-        Marca marca = new Marca(nome, codigosBas);
-        for (Switch s: this.switchs) {
-            if (s.getMarca().equals(marca)) {
-                s.setMarca(marca);
+    public void alterarCodigosBasPorMarca(String nome, CodigosBas codigosBas) throws MarcaNaoExistente {
+        boolean marcaEncontrada = false;
+        for (Switch s : this.switchs) {
+            if (s.getMarca().getNome().equals(nome)) {
+                s.setMarca(new Marca(nome, codigosBas));
+                marcaEncontrada = true;
             }
+        }
+        if (!marcaEncontrada) {
+            throw new MarcaNaoExistente(nome);
         }
     }
     public void removerSwitch(Switch s) {

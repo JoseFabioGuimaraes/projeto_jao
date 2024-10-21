@@ -163,16 +163,20 @@ public class Main {
                     break;
 
                 case 10:
-                    String nomeMarca = JOptionPane.showInputDialog("Digite o nome da Marca:");
-                    String comandoAcessoNovo = JOptionPane.showInputDialog("Digite o novo comando de acesso:");
-                    String comandoConfigNovo = JOptionPane.showInputDialog("Digite o novo comando de configuração:");
-                    String comandoVLANNovo = JOptionPane.showInputDialog("Digite o novo comando de VLAN:");
-                    String comandoGerenciaNovo = JOptionPane.showInputDialog("Digite o novo comando de gerência:");
+                    try {
+                        String nomeMarca = JOptionPane.showInputDialog("Digite o nome da Marca:");
+                        String comandoAcessoNovo = JOptionPane.showInputDialog("Digite o novo comando de acesso:");
+                        String comandoConfigNovo = JOptionPane.showInputDialog("Digite o novo comando de configuração:");
+                        String comandoVLANNovo = JOptionPane.showInputDialog("Digite o novo comando de VLAN:");
+                        String comandoGerenciaNovo = JOptionPane.showInputDialog("Digite o novo comando de gerência:");
 
-                    CodigosBas novosCodigosBas = new CodigosBas(comandoAcessoNovo, comandoConfigNovo, comandoVLANNovo, comandoGerenciaNovo);
-                    switchList.alterarCodigosBasPorMarca(nomeMarca, novosCodigosBas);
+                        CodigosBas novosCodigosBas = new CodigosBas(comandoAcessoNovo, comandoConfigNovo, comandoVLANNovo, comandoGerenciaNovo);
+                        switchList.alterarCodigosBasPorMarca(nomeMarca, novosCodigosBas);
 
-                    JOptionPane.showMessageDialog(null, "Códigos Básicos da Marca alterados com sucesso.");
+                        JOptionPane.showMessageDialog(null, "Códigos Básicos da Marca alterados com sucesso.");
+                    } catch (MarcaNaoExistente e) {
+                        JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                    }
                     break;
 
                 case 11:
