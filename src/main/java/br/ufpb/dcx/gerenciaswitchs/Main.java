@@ -15,7 +15,7 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Erro ao recuperar dados: " + e.getMessage());
         }
 
-        while (option != 9) {
+        while (option != 12) {
             String menu = "Gerenciador de Switches\n"
                     + "1. Cadastrar Switch\n"
                     + "2. Deletar Switch por IP\n"
@@ -76,14 +76,13 @@ public class Main {
                     break;
 
                 case 3:
-                    String marcaNomePesquisa = JOptionPane.showInputDialog("Digite a Marca do Switch:");
-                    Marca marcaPesquisa = new Marca(marcaNomePesquisa, null);
-                    CodigosBas codigosBasPesquisa = switchList.pesquisarCodigosBasPorMarca(marcaPesquisa);
-
-                    if (codigosBasPesquisa != null) {
+                    try {
+                        String marcaNomePesquisa = JOptionPane.showInputDialog("Digite a Marca do Switch:");
+                        Marca marcaPesquisa = new Marca(marcaNomePesquisa, null);
+                        CodigosBas codigosBasPesquisa = switchList.pesquisarCodigosBasPorMarca(marcaPesquisa);
                         JOptionPane.showMessageDialog(null, "Códigos Básicos encontrados: " + codigosBasPesquisa.toString());
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Nenhum Switch encontrado para a marca: " + marcaNomePesquisa);
+                    } catch (MarcaNaoExistente e) {
+                        JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                     }
                     break;
 

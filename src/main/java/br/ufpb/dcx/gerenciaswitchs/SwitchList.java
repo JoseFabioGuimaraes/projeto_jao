@@ -25,7 +25,7 @@ public class SwitchList {
             if (s.getIp().equals(ip)) {
                 this.switchs.remove(s);
                 ipEncontrado = true;
-                return;
+
             }
         }
         if (!ipEncontrado) {
@@ -34,13 +34,13 @@ public class SwitchList {
     }
 
 
-    public CodigosBas pesquisarCodigosBasPorMarca (Marca marca) {// vai precisar de Exeption a marca
-        for (Switch s: this.switchs) {
+    public CodigosBas pesquisarCodigosBasPorMarca (Marca marca) throws MarcaNaoExistente {// vai precisar de Exeption a marca
+        for (Switch s : this.switchs) {
             if (s.getMarca().equals(marca)) {
                 return s.getMarca().getCodigosBas();
             }
         }
-        return null;
+        throw new MarcaNaoExistente(marca.getNome());
     }
     public Switch pesquisarSwitchPorIp (String ip) {
         for (Switch s: this.switchs) {
@@ -120,6 +120,7 @@ public class SwitchList {
             if (s.getMarca().getNome().equals(nome)) {
                 s.setMarca(new Marca(nome, codigosBas));
                 marcaEncontrada = true;
+
             }
         }
         if (!marcaEncontrada) {
